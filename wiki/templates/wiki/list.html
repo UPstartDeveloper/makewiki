@@ -2,7 +2,7 @@
 
 <ul>
     {% for page in object_list %}
-    <li>{{ page }}</li>
+    <li>{{ page.title }}</li>
     {% empty %}
     <li>No pages yet.</li>
     {% endfor %}
