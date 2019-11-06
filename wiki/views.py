@@ -47,7 +47,7 @@ class PageDetailView(DetailView):
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
-        page = self.model.objects.filter(slug=slug)
+        page = self.get_object(self.model.objects)
         template = loader.get_template('wiki/page.html')
         context = {
             'page': page
