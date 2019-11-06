@@ -8,10 +8,7 @@ from django.template import loader
 
 class PageList(ListView):
     """
-    CHALLENGES:
-      1. On GET, display a homepage that shows all Pages in your wiki.
-      2. Replace this CHALLENGE text with a descriptive docstring for PageList.
-      3. Replace pass below with the code to render a template named `list.html`.
+    Display all instances of the Page model in a list. READ functionality.
     """
     model = Page
 
