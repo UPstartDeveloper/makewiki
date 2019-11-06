@@ -16,9 +16,8 @@ class PageList(ListView):
 
     def get(self, request):
         """ Returns a list of wiki pages. """
-        pages = model.objects.all()
-        html = f"<html><body>Here are the Wiki pages: {pages}</body></html>"
-        return HttpResponse(html)
+        pages = self.model.objects.all()
+        return HttpResponse(pages)
 
 
 class PageDetailView(DetailView):
