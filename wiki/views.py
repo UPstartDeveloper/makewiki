@@ -3,6 +3,7 @@ from wiki.models import Page
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponse
+from django.template import loader
 
 
 class PageList(ListView):
@@ -17,7 +18,11 @@ class PageList(ListView):
     def get(self, request):
         """ Returns a list of wiki pages. """
         pages = self.model.objects.all()
-        return HttpResponse(pages)
+        template = loader.get_template('wiki/list.html')
+        context = {
+            'pages': pages,
+        }
+        return HttpResponse(template.render(context, request))
 
 
 class PageDetailView(DetailView):
