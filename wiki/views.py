@@ -8,7 +8,8 @@ from django.template import loader
 
 class PageList(ListView):
     """
-    Display all instances of the Page model in a list. READ functionality.
+    Display all instances of the Page model in a list. READ functionality
+    for the whole Collection.
     """
     model = Page
 
@@ -43,7 +44,7 @@ class PageDetailView(DetailView):
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
-        pass
+
 
     def post(self, request, slug):
         pass
