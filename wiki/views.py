@@ -25,9 +25,7 @@ class PageList(ListView):
 
 class PageDetailView(DetailView):
     """
-    CHALLENGES:
-      1. On GET, render a template named `page.html`.
-      2. Replace this docstring with a description of what thos accomplishes.
+    Display details of a single Wiki page featured on the site.
 
     STRETCH CHALLENGES:
       1. Import the PageForm class from forms.py.
@@ -44,7 +42,12 @@ class PageDetailView(DetailView):
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
-
+        page = self.model.objects.filter(slug=slug)
+        template = loader.get_template('wiki/page.html')
+        context = {
+            'page': page
+        }
+        return HttpResponse(template.render(context, request))
 
     def post(self, request, slug):
         pass
