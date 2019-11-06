@@ -1,0 +1,9 @@
+<h1>Wiki Articles</h1>
+
+<ul>
+    {% for page in object_list %}
+    <li>{{ page }}</li>
+    {% empty %}
+    <li>No pages yet.</li>
+    {% endfor %}
+</ul>
