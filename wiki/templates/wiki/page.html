@@ -1,5 +1,10 @@
+
+{% block content %}
+
 <h1>{{ page.title }}</h1>
 <h3>Written by: {{ page.author }}</h3>
 <h4>Date Created: {{ page.created }}</h4>
 <h5>Date Modified: {{ page.modified }}</h5>
 <p>Article Text: <br> {{ page.content }}</p>
+
+{% endblock %}
