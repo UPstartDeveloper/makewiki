@@ -12,15 +12,8 @@ class PageList(ListView):
     for the whole Collection.
     """
     model = Page
-
-    def get(self, request):
-        """ Returns a list of wiki pages. """
-        pages = self.model.objects.all()
-        template = loader.get_template('wiki/list.html')
-        context = {
-            'pages': pages,
-        }
-        return HttpResponse(template.render(context, request))
+    template_name = 'wiki/list.html'
+    context_object_name = 'pages'
 
 
 class PageDetailView(DetailView):
@@ -44,15 +37,8 @@ class PageDetailView(DetailView):
            updated.
     """
     model = Page
-
-    def get(self, request, slug):
-        """ Returns a specific of wiki page by slug. """
-        page = self.get_object(self.model.objects)
-        template = loader.get_template('wiki/page.html')
-        context = {
-            'page': page
-        }
-        return HttpResponse(template.render(context, request))
+    template_name = 'wiki/page.html'
+    context_object_name = 'page'
 
     def post(self, request, slug):
         pass
