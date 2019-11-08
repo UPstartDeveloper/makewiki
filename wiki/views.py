@@ -38,8 +38,16 @@ class PageDetailView(DetailView):
            updated.
     """
     model = Page
-    template_name = 'wiki/page.html'
-    context_object_name = 'page'
+
+    def get(self, request, slug):
+        """ Returns a specific of wiki page by slug. """
+        page = self.get_object(self.model.objects)
+        template = loader.get_template('wiki/page.html')
+        context = {
+            'page': page,
+            'form': PageForm
+        }
+        return HttpResponse(template.render(context, request))
 
     def post(self, request, slug):
         pass
