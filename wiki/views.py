@@ -26,6 +26,7 @@ class PageDetailView(DetailView):
           - This ModelForm enables editing of an existing Page object in the
           database.
       2. On GET, render an edit form below the page details.
+      # here I am
       3. On POST, check if the data in the form is valid.
         - If True, save the data, and redirect back to the DetailsView.
         - If False, display all the errors in the template, above the form
@@ -38,6 +39,7 @@ class PageDetailView(DetailView):
            updated.
     """
     model = Page
+    form = PageForm
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
@@ -50,4 +52,13 @@ class PageDetailView(DetailView):
         return HttpResponse(template.render(context, request))
 
     def post(self, request, slug):
-        pass
+        """Checks if the data in the form is valid.
+           - If True, save the data, and redirect back to the DetailsView.
+           - If False, display all the errors in the template, above the form
+           fields.
+        """
+        if form_valid(self.form) is True:
+            self.model.save()
+            self.get()
+        else:
+            pass
