@@ -39,7 +39,6 @@ class PageDetailView(DetailView):
            updated.
     """
     model = Page
-    form = PageForm
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
@@ -57,8 +56,10 @@ class PageDetailView(DetailView):
            If False, display all the errors in the template,
            above the form fields.
         """
-        if form_valid(self.form) is True:
-            self.form.save()
-            return HttpResponseRedirect(self.get())
+        form = PageForm(request.POST or None)
+        if form.is_valid():
+            PageForm.save()
+            # next = request.POST.get('next', '/')
+            return HttpResponseRedirect(next)
         else:
             pass
