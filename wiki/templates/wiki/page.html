@@ -8,8 +8,11 @@
 <h5>Date Modified: {{ page.modified }}</h5>
 <p>Article Text: <br> {{ page.content }}</p>
 
-<!-- form tag inspired by https://stackoverflow.com/questions/35796195/how-to-redirect-to-previous-page-in-django-after-post-request -->
-<form action="POST">
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form method="post" action="{% url 'wiki:wiki-details-page' page.slug %}">
     {% csrf_token %}
         {{ form.as_p }}
     <input type="submit" value="Submit">

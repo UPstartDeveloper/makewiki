@@ -22,15 +22,10 @@ class PageDetailView(DetailView):
     Display details of a single Wiki page featured on the site.
 
     STRETCH CHALLENGES:
-      1. Import the PageForm class from forms.py.
-          - This ModelForm enables editing of an existing Page object in the
-          database.
-      2. On GET, render an edit form below the page details.
-      3. On POST, check if the data in the form is valid.
-        - If True, save the data, and redirect back to the DetailsView.
+      # here I am
+        - If True, save the data,
         - If False, display all the errors in the template, above the form
         fields.
-      # here I am
       4. Instead of hard-coding the path to redirect to, use the `reverse`
       function to return the path.
       5. After successfully editing a Page, use Django Messages to "flash" the
@@ -56,10 +51,9 @@ class PageDetailView(DetailView):
            If False, display all the errors in the template,
            above the form fields.
         """
-        form = PageForm(request.POST or None)
+        form = PageForm(request.POST or None, instance=self)
         if form.is_valid():
-            PageForm.save()
-            next = request.POST.get('next', PageDetailView.as_view())
-            return HttpResponseRedirect(next)
+            form.save()
+            return HttpResponseRedirect(self.get(new_page.slug))
         else:
             pass
