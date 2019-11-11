@@ -59,7 +59,7 @@ class PageDetailView(DetailView):
         form = PageForm(request.POST or None)
         if form.is_valid():
             PageForm.save()
-            # next = request.POST.get('next', '/')
+            next = request.POST.get('next', '/')
             return HttpResponseRedirect(next)
         else:
             pass
