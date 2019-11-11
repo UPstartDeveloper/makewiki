@@ -34,6 +34,7 @@ class PageDetailView(DetailView):
            updated.
     """
     model = Page
+    form_class = PageForm
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
