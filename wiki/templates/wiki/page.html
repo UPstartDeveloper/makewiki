@@ -8,6 +8,12 @@
 <h5>Date Modified: {{ page.modified }}</h5>
 <p>Article Text: <br> {{ page.content }}</p>
 
-{{ form }}
+<!-- form tag inspired by https://stackoverflow.com/questions/35796195/how-to-redirect-to-previous-page-in-django-after-post-request -->
+<form action="POST">
+    {% csrf_token %}
+        {{ form }}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="submit" value="Submit">
+</form>
 
 {% endblock %}

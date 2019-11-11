@@ -2,7 +2,7 @@ from django.shortcuts import render
 from wiki.models import Page
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import PageForm
 
@@ -59,6 +59,6 @@ class PageDetailView(DetailView):
         """
         if form_valid(self.form) is True:
             self.form.save()
-            self.get()
+            return HttpResponseRedirect(self.get())
         else:
             pass
